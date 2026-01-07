@@ -431,3 +431,166 @@ body {
     }
 }
 
+/* ============================================
+   MOBILE RESPONSIVE STYLES
+   ============================================ */
+
+/* Tablet and below (768px) */
+@media (max-width: 768px) {
+    html, body {
+        min-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+
+    .global_container_,
+    .hero {
+        min-width: 100% !important;
+        width: 100% !important;
+    }
+
+    /* Make images responsive */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Adjust font sizes */
+    body {
+        font-size: 1.5rem !important;
+    }
+
+    /* Container adjustments */
+    .l-constrained,
+    .l-constrained-2,
+    .l-constrained-3,
+    .l-constrained-4,
+    .l-constrained-5,
+    .l-constrained-6,
+    .l-constrained-7,
+    .l-constrained-8 {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+
+    /* Hero section adjustments */
+    .hero {
+        background-size: cover !important;
+        background-position: center !important;
+    }
+
+    /* Text adjustments */
+    .text-16,
+    .text-17,
+    .text-18,
+    .text-19,
+    .text-20,
+    .text-21,
+    .text-22,
+    .text-23,
+    .text-24 {
+        font-size: 1.2rem !important;
+    }
+
+    /* Sticky notes - make smaller and stack */
+    .sticky-note {
+        font-size: 0.7rem !important;
+        padding: 6px 8px !important;
+        min-height: 40px !important;
+    }
+
+    .sticky-note-wrapper {
+        margin: 10px 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+    }
+
+    /* Remove fixed positioning on mobile */
+    .stucked-imagery {
+        background-attachment: scroll !important;
+    }
+
+    /* Button adjustments */
+    .enroll-button,
+    .cta-button {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    /* Video section */
+    .rectangle-6-holder {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Before/After section */
+    .row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .triangle-1,
+    .triangle-1-copy {
+        transform: rotate(90deg);
+    }
+}
+
+/* Mobile phones (480px) */
+@media (max-width: 480px) {
+    body {
+        font-size: 1rem !important;
+    }
+
+    .l-constrained,
+    .l-constrained-2,
+    .l-constrained-3,
+    .l-constrained-4,
+    .l-constrained-5,
+    .l-constrained-6,
+    .l-constrained-7,
+    .l-constrained-8 {
+        padding: 0 15px;
+    }
+
+    /* Further reduce text sizes */
+    .text-16,
+    .text-17,
+    .text-18,
+    .text-19,
+    .text-20,
+    .text-21,
+    .text-22,
+    .text-23,
+    .text-24 {
+        font-size: 1rem !important;
+    }
+
+    /* Sticky notes - even smaller */
+    .sticky-note {
+        font-size: 0.6rem !important;
+        padding: 4px 6px !important;
+        min-height: 35px !important;
+    }
+
+    /* Hide some decorative elements on very small screens */
+    .rectangle-5-copy-2-holder,
+    .rectangle-5-copy-holder,
+    .rectangle-5-holder {
+        display: none;
+    }
+
+    /* Stack columns */
+    .col-5,
+    .col-2 {
+        width: 100% !important;
+        float: none !important;
+    }
+}
+
+/* Landscape mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero {
+        min-height: 100vh;
+    }
+}
+

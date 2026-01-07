@@ -61,7 +61,67 @@
       .col-2 {
         background-image: url('{{ asset('images/rectangle_4_copy_7.jpg') }}') !important;
       }
+      /* Top Navigation Bar - Simple Right Side Only */
+      .top-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 20px 40px;
+        z-index: 10000;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+      .top-nav .nav-links {
+        display: flex;
+        gap: 25px;
+        align-items: center;
+      }
+      .top-nav .nav-link {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      .top-nav .nav-link:hover {
+        color: #f3704d;
+        transform: translateY(-2px);
+      }
+      .top-nav .btn-login {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      .top-nav .btn-login:hover {
+        color: #f3704d;
+        transform: translateY(-2px);
+      }
+      @media (max-width: 768px) {
+        .top-nav {
+          padding: 15px 20px;
+        }
+        .top-nav .nav-links {
+          gap: 20px;
+        }
+        .top-nav .nav-link,
+        .top-nav .btn-login {
+          font-size: 14px;
+        }
+      }
     </style>
+    <!-- Top Navigation Bar - Simple Right Side Only -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="{{ route('enroll') }}" class="nav-link">Enroll Now</a>
+        <a href="{{ route('admin.login') }}" class="btn-login">Admin Login</a>
+      </div>
+    </nav>
     <div class="global_container_">
       <div class="color-fill-1-holder">
         <div class="hero">
@@ -80,9 +140,9 @@
         <div class="enroll-now-bar slide-up">
           <div class="l-constrained-3 group">
             <p class="text-3">Get Yourself Enrolled for the next batch</p>
-            <div class="rectangle-2-holder enroll-button">
+            <a href="{{ route('enroll') }}" class="rectangle-2-holder enroll-button">
               <img class="text-4" src="{{ asset('images/enroll_now.png') }}" alt="Enroll Now ↗" width="157" height="21" title="Enroll Now ↗">
-            </div>
+            </a>
           </div>
         </div>
         <div class="stucked-imagery">
@@ -121,9 +181,9 @@
           <div class="l-constrained-5 group">
             <div class="col-5">
               <p class="text-16 slide-left">Mastering<br>The Hidden<br>Creative Power</p>
-              <div class="rectangle-2-copy-holder enroll-button">
+              <a href="{{ route('enroll') }}" class="rectangle-2-copy-holder enroll-button">
                 <img class="text-17" src="{{ asset('images/enroll_now_2.png') }}" alt="Enroll Now ↗" width="275" height="35" title="Enroll Now ↗">
-              </div>
+              </a>
             </div>
             <div class="rectangle-5-copy-2-holder slide-right">
               <img class="text-20" src="{{ asset('images/recordings_available.png') }}" alt="Recordings Available" width="47" height="464" title="Recordings Available">
