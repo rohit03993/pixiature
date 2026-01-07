@@ -54,6 +54,6 @@ class AdminController extends Controller
         $application = EnrollmentApplication::findOrFail($id);
         $application->delete();
 
-        return redirect()->route('admin.index')->with('success', 'Application deleted successfully!');
+        return redirect()->route('admin.applications')->with('success', 'Application deleted successfully!');
     }
 }
