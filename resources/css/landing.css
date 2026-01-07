@@ -1,0 +1,433 @@
+/* Modern Landing Page Styles with Animations */
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Scroll Progress Bar */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #f3704d, #df6646);
+    z-index: 9999;
+    transition: width 0.1s ease;
+}
+
+/* Animation Classes */
+.fade-in {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transform: translateY(30px);
+}
+
+.fade-in.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-up {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.slide-up.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.slide-left.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.slide-right.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scale-in {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.scale-in.animate-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Text Reveal Animation */
+.text-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.text-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Pain Points Stagger Animation */
+.pain-point-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.pain-point-item.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Sticky notes should be fixed - no animations */
+.sticky-note-wrapper {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+.sticky-note-wrapper .sticky-note {
+    opacity: 1 !important;
+    transform: rotate(-2deg) !important;
+    transition: none !important;
+}
+
+/* Parallax Images */
+.parallax-img {
+    will-change: transform;
+    transition: transform 0.1s ease-out;
+}
+
+/* Button Enhancements */
+.cta-button,
+.enroll-button {
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button:hover,
+.enroll-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(243, 112, 77, 0.3);
+}
+
+.cta-button:active,
+.enroll-button:active {
+    transform: translateY(-1px);
+}
+
+/* Hero Section Enhancements */
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero .l-constrained {
+    position: relative;
+}
+
+/* Modern Container Improvements */
+.l-constrained,
+.l-constrained-2,
+.l-constrained-3,
+.l-constrained-4,
+.l-constrained-5,
+.l-constrained-6,
+.l-constrained-7,
+.l-constrained-8 {
+    max-width: 1920px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Section Transitions */
+section,
+.section {
+    transition: opacity 0.3s ease;
+}
+
+/* Image Loading Optimization */
+img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* Smooth Transitions for All Interactive Elements */
+a, button, .rectangle-2-holder, .rectangle-2-copy-holder, .rectangle-4-copy-8-holder {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced Focus States */
+a:focus,
+button:focus {
+    outline: 2px solid #f3704d;
+    outline-offset: 2px;
+}
+
+/* Performance Optimizations */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Sticky Note Styles */
+.sticky-note-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.sticky-note {
+    position: relative;
+    padding: 10px 14px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.1);
+    transform: rotate(-2deg);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    width: fit-content;
+    margin: 0;
+    z-index: 10;
+}
+
+.sticky-note span {
+    color: #000;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+    display: block;
+    text-shadow: none;
+    position: relative;
+    z-index: 11;
+}
+
+.sticky-yellow {
+    background: #FFEB3B;
+    background: linear-gradient(135deg, #FFEB3B 0%, #FFF176 100%);
+}
+
+.sticky-blue {
+    background: #81D4FA;
+    background: linear-gradient(135deg, #81D4FA 0%, #B3E5FC 100%);
+}
+
+.sticky-pink {
+    background: #F8BBD0;
+    background: linear-gradient(135deg, #F8BBD0 0%, #FCE4EC 100%);
+}
+
+/* Sticky Note Positioning - matching original image positions exactly - FIXED */
+.sticky-note-wrapper.text-5 {
+    width: 118px;
+    margin-bottom: 0;
+    position: relative;
+    display: block;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.sticky-note-wrapper.text-5 .sticky-note {
+    width: 118px;
+    min-height: 63px;
+    transform: rotate(-3deg) !important;
+    font-size: 0.9rem;
+    padding: 8px 10px;
+    opacity: 1 !important;
+}
+
+.sticky-note-wrapper.text-6 {
+    width: 107px;
+    margin: 135px auto 0;
+    right: 19px;
+    position: relative;
+    display: block;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.sticky-note-wrapper.text-6 .sticky-note {
+    width: 107px;
+    min-height: 64px;
+    transform: rotate(2deg) !important;
+    font-size: 0.9rem;
+    padding: 8px 10px;
+    opacity: 1 !important;
+}
+
+.sticky-note-wrapper.text-7 {
+    width: 110px;
+    margin: 160px auto 0;
+    left: 40.5px;
+    position: relative;
+    display: block;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.sticky-note-wrapper.text-7 .sticky-note {
+    width: 110px;
+    min-height: 62px;
+    transform: rotate(-1deg) !important;
+    font-size: 0.9rem;
+    padding: 8px 10px;
+    opacity: 1 !important;
+}
+
+.sticky-note-wrapper.text-10 {
+    width: 126px;
+    margin-bottom: 0;
+    position: relative;
+    display: block;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.sticky-note-wrapper.text-10 .sticky-note {
+    width: 126px;
+    min-height: 63px;
+    transform: rotate(1deg) !important;
+    font-size: 0.85rem;
+    padding: 8px 10px;
+    opacity: 1 !important;
+}
+
+.sticky-note-wrapper.text-11 {
+    width: 116px;
+    margin: 161px auto 0;
+    position: relative;
+    display: block;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.sticky-note-wrapper.text-11 .sticky-note {
+    width: 116px;
+    min-height: 57px;
+    transform: rotate(-2deg) !important;
+    font-size: 0.85rem;
+    padding: 8px 10px;
+    opacity: 1 !important;
+}
+
+.sticky-note-wrapper.text-12 {
+    width: 116px;
+    margin: 118px auto 0;
+    left: 388px;
+    position: relative;
+    display: block;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.sticky-note-wrapper.text-12 .sticky-note {
+    width: 116px;
+    min-height: 52px;
+    transform: rotate(1deg) !important;
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    opacity: 1 !important;
+}
+
+.sticky-note-wrapper.text-13 {
+    width: 114px;
+    margin: -4px auto 0;
+    left: 15px;
+    position: relative;
+    display: block;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.sticky-note-wrapper.text-13 .sticky-note {
+    width: 114px;
+    min-height: 69px;
+    transform: rotate(-1deg) !important;
+    font-size: 0.85rem;
+    padding: 8px 10px;
+    opacity: 1 !important;
+}
+
+/* Fix gaps between sections */
+.enroll-now-bar,
+.stucked-imagery,
+.design-sprint,
+.mastering,
+.video,
+.before-after,
+.cta {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* Ensure backgrounds cover properly */
+.design-sprint,
+.col-2 {
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Remove parallax from stucked-imagery section */
+.stucked-imagery {
+    background-attachment: scroll !important;
+}
+
+/* Remove any visible borders or lines */
+.global_container_,
+.color-fill-1-holder {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Fix hero section to cover full width */
+.hero {
+    min-width: 1920px;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    min-width: 1920px;
+}
+
+
+/* Reduce Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
