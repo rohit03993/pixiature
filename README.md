@@ -1,62 +1,133 @@
-# Pixature CRM & LMS
+# Pixature Landing Page
 
-A comprehensive Customer Relationship Management and Learning Management System for design courses.
+A modern, animated landing page built with Laravel, Tailwind CSS, and Vite.
 
 ## Features
 
-- **Landing Page**: Beautiful, responsive landing page with enrollment form
-- **Student Enrollment**: Capture student details and send automatic email confirmations
-- **Student Dashboard**: View classes, progress reports, and course materials
-- **Admin Panel**: Manage students, programs, and classes
+- ✅ Modern landing page with smooth scroll animations
+- ✅ Parallax effects on hero section
+- ✅ Responsive design
+- ✅ Production-ready build system
+- ✅ All images and assets included
 
-## Installation
+## Quick Setup
 
-1. Install PHP dependencies:
+### 1. Clone the Repository
+
 ```bash
-composer install
+git clone https://github.com/rohit03993/pixiature.git
+cd pixiature
 ```
 
-2. Install Node dependencies:
+### 2. Install Dependencies
+
 ```bash
+# Install PHP dependencies
+composer install
+
+# Install Node dependencies
 npm install
 ```
 
-3. Copy environment file:
-```bash
-cp .env.example .env
-```
+### 3. Environment Setup
 
-4. Generate application key:
 ```bash
+# Copy environment file
+cp .env.example .env
+
+# Generate application key
 php artisan key:generate
 ```
 
-5. Configure your database in `.env` file
+### 4. Build Assets
 
-6. Run migrations:
 ```bash
-php artisan migrate
+# Build assets for production
+npm run build
 ```
 
-7. Build assets:
-```bash
-npm run dev
-```
+### 5. Run the Application
 
-8. Start the development server:
 ```bash
+# Start Laravel server
 php artisan serve
 ```
 
-## Development
+Visit `http://localhost:8000` to see the landing page.
 
-- Frontend: Run `npm run dev` for Vite development server
-- Backend: Run `php artisan serve` for Laravel development server
+## Server Deployment
 
-## Tech Stack
+### Steps for Server Deployment:
 
-- Laravel 10
+1. **Pull the code:**
+   ```bash
+   git pull origin main
+   ```
+
+2. **Install dependencies (if not already installed):**
+   ```bash
+   composer install --no-dev --optimize-autoloader
+   npm install
+   ```
+
+3. **Build assets:**
+   ```bash
+   npm run build
+   ```
+
+4. **Set up environment:**
+   - Copy `.env.example` to `.env`
+   - Configure your database and other settings in `.env`
+   - Run `php artisan key:generate`
+
+5. **Set permissions:**
+   ```bash
+   chmod -R 775 storage bootstrap/cache
+   ```
+
+6. **Clear and cache:**
+   ```bash
+   php artisan config:cache
+   php artisan route:cache
+   php artisan view:cache
+   ```
+
+7. **Ensure images are in place:**
+   - All images should be in `public/images/` directory
+   - They are already included in the repository
+
+## Important Notes
+
+- **Images Location:** All images are in `public/images/` directory
+- **Build Required:** Always run `npm run build` after pulling changes
+- **No Dev Server Needed:** After building, only `php artisan serve` is needed
+- **PSD File:** The original PSD file is in `design/` directory (large file, optional)
+
+## File Structure
+
+```
+├── public/
+│   └── images/          # All website images
+├── resources/
+│   ├── views/
+│   │   └── landing.blade.php  # Main landing page
+│   ├── css/
+│   │   └── landing.css  # Landing page styles
+│   ├── js/
+│   │   └── landing.js   # Landing page animations
+│   └── static-import/   # Original HTML/CSS files
+├── routes/
+│   └── web.php          # Routes (landing page at /)
+└── vite.config.js       # Vite configuration
+```
+
+## Technologies Used
+
+- Laravel 10+
 - Tailwind CSS
 - Vite
-- MySQL/PostgreSQL
+- Vanilla JavaScript (for animations)
 
+## License
+
+Proprietary - All rights reserved
