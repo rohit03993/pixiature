@@ -27,6 +27,7 @@
             <div class="admin-tabs">
                 <a href="{{ route('admin.dashboard') }}" class="tab active">Dashboard</a>
                 <a href="{{ route('admin.applications') }}" class="tab">Applications</a>
+                <a href="{{ route('admin.landing-page.index') }}" class="tab">Landing Page</a>
             </div>
 
             <!-- Stats Cards -->

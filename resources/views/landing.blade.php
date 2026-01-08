@@ -61,65 +61,199 @@
       .col-2 {
         background-image: url('{{ asset('images/rectangle_4_copy_7.jpg') }}') !important;
       }
-      /* Top Navigation Bar - Simple Right Side Only */
+      /* Top Navigation Bar - Modern Right Center Position */
       .top-nav {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
-        padding: 20px 40px;
+        padding: 20px 80px;
         z-index: 10000;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        background: transparent;
+        backdrop-filter: blur(0px);
+      }
+      .top-nav.scrolled {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 15px 80px;
+      }
+      .top-nav .nav-logo {
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+        height: 0;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+      }
+      .top-nav.scrolled .nav-logo {
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
+        height: auto;
+      }
+      .top-nav .nav-logo img {
+        height: 45px;
+        width: auto;
+        display: block;
+        transition: all 0.3s ease;
+        opacity: 1;
+        filter: none;
+      }
+      .top-nav.scrolled .nav-logo img {
+        filter: brightness(0) saturate(100%);
+        opacity: 0.85;
+      }
+      .top-nav .nav-logo:hover img {
+        transform: scale(1.05);
       }
       .top-nav .nav-links {
         display: flex;
-        gap: 25px;
+        gap: 16px;
         align-items: center;
       }
       .top-nav .nav-link {
         color: white;
         text-decoration: none;
-        font-weight: 500;
-        font-size: 15px;
-        transition: all 0.3s ease;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+        position: relative;
+        padding: 12px 28px;
+        border-radius: 50px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1.5px solid rgba(255, 255, 255, 0.2);
+        overflow: hidden;
+        display: inline-block;
+      }
+      .top-nav .nav-link::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s ease;
+      }
+      .top-nav .nav-link:hover::before {
+        left: 100%;
+      }
+      .top-nav.scrolled .nav-link {
+        color: #333;
+        text-shadow: none;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1.5px solid rgba(243, 112, 77, 0.2);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
       }
       .top-nav .nav-link:hover {
-        color: #f3704d;
-        transform: translateY(-2px);
+        color: white;
+        transform: translateY(-3px) scale(1.05);
+        background: rgba(243, 112, 77, 0.9);
+        border-color: rgba(243, 112, 77, 0.5);
+        box-shadow: 0 8px 24px rgba(243, 112, 77, 0.4);
+      }
+      .top-nav.scrolled .nav-link:hover {
+        color: white;
+        background: linear-gradient(135deg, #f3704d 0%, #df6646 100%);
+        border-color: #f3704d;
+        box-shadow: 0 8px 24px rgba(243, 112, 77, 0.35);
       }
       .top-nav .btn-login {
         color: white;
         text-decoration: none;
         font-weight: 600;
-        font-size: 15px;
-        transition: all 0.3s ease;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        font-size: 14px;
+        letter-spacing: 0.5px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+        padding: 12px 28px;
+        border-radius: 50px;
+        background: linear-gradient(135deg, rgba(243, 112, 77, 0.9) 0%, rgba(223, 102, 70, 0.9) 100%);
+        border: 1.5px solid rgba(243, 112, 77, 0.5);
+        box-shadow: 0 4px 16px rgba(243, 112, 77, 0.3);
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+      }
+      .top-nav .btn-login::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+      }
+      .top-nav .btn-login:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+      .top-nav .btn-login span {
+        position: relative;
+        z-index: 1;
+      }
+      .top-nav.scrolled .btn-login {
+        color: white;
+        text-shadow: none;
+        background: linear-gradient(135deg, #f3704d 0%, #df6646 100%);
+        border: 1.5px solid rgba(243, 112, 77, 0.3);
+        box-shadow: 0 4px 16px rgba(243, 112, 77, 0.25);
       }
       .top-nav .btn-login:hover {
-        color: #f3704d;
-        transform: translateY(-2px);
+        color: white;
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 10px 32px rgba(243, 112, 77, 0.5);
+        border-color: rgba(243, 112, 77, 0.8);
+      }
+      .top-nav.scrolled .btn-login:hover {
+        box-shadow: 0 10px 32px rgba(243, 112, 77, 0.45);
       }
       @media (max-width: 768px) {
         .top-nav {
-          padding: 15px 20px;
+          padding: 15px 30px;
+        }
+        .top-nav.scrolled {
+          padding: 12px 30px;
+        }
+        .top-nav .nav-logo img {
+          height: 35px;
         }
         .top-nav .nav-links {
-          gap: 20px;
+          gap: 12px;
         }
         .top-nav .nav-link,
         .top-nav .btn-login {
-          font-size: 14px;
+          font-size: 13px;
+          padding: 10px 20px;
+          letter-spacing: 0.3px;
+        }
+        .top-nav .nav-link:hover,
+        .top-nav .btn-login:hover {
+          transform: translateY(-2px) scale(1.03);
         }
       }
     </style>
-    <!-- Top Navigation Bar - Simple Right Side Only -->
+    <!-- Top Navigation Bar - Modern Design -->
     <nav class="top-nav">
+      <a href="/" class="nav-logo">
+        <img src="{{ asset('images/logo_white.png') }}" alt="Pixature Logo">
+      </a>
       <div class="nav-links">
         <a href="{{ route('enroll') }}" class="nav-link">Enroll Now</a>
-        <a href="{{ route('admin.login') }}" class="btn-login">Admin Login</a>
+        <a href="{{ route('admin.login') }}" class="btn-login"><span>Admin Login</span></a>
       </div>
     </nav>
     <div class="global_container_">
@@ -129,17 +263,47 @@
             <img class="ellipse-1-copy parallax-img" src="{{ asset('images/ellipse_1_copy.png') }}" alt="" width="1339" height="1053">
             <img class="layer-1 parallax-img" src="{{ asset('images/layer_1.jpg') }}" alt="" width="1383" height="1053">
             <img class="layer-1-copy parallax-img" src="{{ asset('images/layer_1_copy.jpg') }}" alt="" width="959" height="1053">
-            <img class="logo-white fade-in" src="{{ asset('images/logo_white.png') }}" alt="Pixature Logo" width="155" height="110">
-            <p class="learn fade-in">Learn.</p>
-            <p class="text slide-left">Create Like<br>a Pro</p>
-            <p class="text-2 slide-right">Design Your<br>Way Forward</p>
-            <p class="design fade-in">Design.</p>
-            <p class="grow fade-in">Grow.</p>
+            @php
+                $hero = $sections['hero'] ?? null;
+                $heroFields = $hero ? (is_array($hero->text_fields) ? $hero->text_fields : (is_string($hero->text_fields) ? json_decode($hero->text_fields, true) : [])) : [];
+                $taglineLeft = $heroFields['tagline_left'] ?? 'Create Like a Pro';
+                $taglineRight = $heroFields['tagline_right'] ?? 'Design Your Way Forward';
+                $mainHeadline = $heroFields['main_headline'] ?? "Learn.\nDesign.\nGrow.";
+                // Convert literal \n strings to actual newlines, then split
+                $mainHeadline = str_replace('\\n', "\n", $mainHeadline);
+                $headlineParts = array_filter(array_map('trim', explode("\n", $mainHeadline)));
+                $headlineParts = array_values($headlineParts); // Re-index array
+            @endphp
+            @if($hero && $hero->image_path)
+                <img class="logo-white fade-in" src="{{ \Illuminate\Support\Facades\Storage::url($hero->image_path) }}" alt="Pixature Logo" width="155" height="110">
+            @else
+                <img class="logo-white fade-in" src="{{ asset('images/logo_white.png') }}" alt="Pixature Logo" width="155" height="110">
+            @endif
+            @if(count($headlineParts) >= 3)
+                <p class="learn fade-in">{{ $headlineParts[0] }}</p>
+                <p class="design fade-in">{{ $headlineParts[1] }}</p>
+                <p class="grow fade-in">{{ $headlineParts[2] }}</p>
+            @elseif(count($headlineParts) == 2)
+                <p class="learn fade-in">{{ $headlineParts[0] }}</p>
+                <p class="design fade-in">{{ $headlineParts[1] }}</p>
+            @elseif(count($headlineParts) == 1)
+                <p class="learn fade-in">{{ $headlineParts[0] }}</p>
+            @else
+                <p class="learn fade-in">Learn.</p>
+                <p class="design fade-in">Design.</p>
+                <p class="grow fade-in">Grow.</p>
+            @endif
+            <p class="text slide-left">{!! str_replace(['\n', "\n"], '<br>', $taglineLeft) !!}</p>
+            <p class="text-2 slide-right">{!! str_replace(['\n', "\n"], '<br>', $taglineRight) !!}</p>
           </div>
         </div>
         <div class="enroll-now-bar slide-up">
           <div class="l-constrained-3 group">
-            <p class="text-3">Get Yourself Enrolled for the next batch</p>
+            @php
+                $enrollBar = $sections['cta_bar'] ?? null;
+                $enrollText = $enrollBar && is_array($enrollBar->text_fields) ? ($enrollBar->text_fields['cta_text'] ?? $enrollBar->content ?? 'Get Yourself Enrolled for the next batch') : 'Get Yourself Enrolled for the next batch';
+            @endphp
+            <p class="text-3">{{ $enrollText }}</p>
             <a href="{{ route('enroll') }}" class="rectangle-2-holder enroll-button">
               <img class="text-4" src="{{ asset('images/enroll_now.png') }}" alt="Enroll Now ↗" width="157" height="21" title="Enroll Now ↗">
             </a>
@@ -180,7 +344,11 @@
         <div class="mastering">
           <div class="l-constrained-5 group">
             <div class="col-5">
-              <p class="text-16 slide-left">Mastering<br>The Hidden<br>Creative Power</p>
+              @php
+                $mastering = $sections['design_sprint'] ?? null;
+                $masteringText = $mastering && is_array($mastering->text_fields) ? ($mastering->text_fields['description'] ?? 'Mastering<br>The Hidden<br>Creative Power') : 'Mastering<br>The Hidden<br>Creative Power';
+              @endphp
+              <p class="text-16 slide-left">{!! str_replace('\n', '<br>', $masteringText) !!}</p>
               <a href="{{ route('enroll') }}" class="rectangle-2-copy-holder enroll-button">
                 <img class="text-17" src="{{ asset('images/enroll_now_2.png') }}" alt="Enroll Now ↗" width="275" height="35" title="Enroll Now ↗">
               </a>
@@ -199,7 +367,12 @@
         </div>
         <div class="video">
           <div class="l-constrained-6">
-            <img class="text-21 fade-in" src="{{ asset('images/1000_students_got_gaurant.png') }}" alt="1000+ Students Got gauranteed growth in their career" width="1084" height="245" title="1000+ Students Got gauranteed growth in their career">
+            <div class="student-counter-wrapper fade-in">
+              <div class="student-counter-container">
+                <div class="student-counter" id="studentCounter">0</div>
+                <div class="student-counter-text">Students Got guaranteed growth in their career</div>
+              </div>
+            </div>
             <div class="rectangle-6-holder scale-in">
               <img class="text-22" src="{{ asset('images/video_mockup.png') }}" alt="(Video Mockup)" width="358" height="63" title="(Video Mockup)">
             </div>
@@ -208,15 +381,50 @@
         <div class="before-after">
           <div class="col">
             <div class="l-constrained-7">
-              <p class="text-23 fade-in">Only 1 month of Sprint get you there</p>
               <img class="ellipse-2-copy scale-in" src="{{ asset('images/ellipse_2_copy.png') }}" alt="" width="606" height="662">
             </div>
           </div>
           <img class="ellipse-2" src="{{ asset('images/ellipse_2.png') }}" alt="" width="630" height="662">
-          <div class="row group slide-up">
-            <img class="triangle-1" src="{{ asset('images/triangle_1.png') }}" alt="" width="73" height="84">
-            <p class="text-24">Before / After<br>image placeholder (Sliders)</p>
-            <img class="triangle-1-copy" src="{{ asset('images/triangle_1_copy.png') }}" alt="" width="74" height="84">
+          <div class="before-after-slider-wrapper slide-up">
+            @php
+                $beforeAfter = $sections['before_after'] ?? null;
+                $beforeAfterText = $beforeAfter && is_array($beforeAfter->text_fields) ? ($beforeAfter->text_fields['heading'] ?? $beforeAfter->content ?? 'Only 1 month of Sprint get you there') : 'Only 1 month of Sprint get you there';
+            @endphp
+            <p class="text-23 fade-in">{{ $beforeAfterText }}</p>
+            <div class="before-after-slider" id="beforeAfterSlider">
+              <!-- Demo Images - Replace these with your actual before/after images -->
+              <div class="slider-slide active">
+                <div class="slider-image-placeholder" style="background: linear-gradient(135deg, #f3704d 0%, #df6646 100%);">
+                  <span>Sample 1</span>
+                </div>
+              </div>
+              <div class="slider-slide">
+                <div class="slider-image-placeholder" style="background: linear-gradient(135deg, #df6646 0%, #f3704d 100%);">
+                  <span>Sample 2</span>
+                </div>
+              </div>
+              <div class="slider-slide">
+                <div class="slider-image-placeholder" style="background: linear-gradient(135deg, #f3704d 0%, #df6646 100%);">
+                  <span>Sample 3</span>
+                </div>
+              </div>
+              <div class="slider-slide">
+                <div class="slider-image-placeholder" style="background: linear-gradient(135deg, #df6646 0%, #f3704d 100%);">
+                  <span>Sample 4</span>
+                </div>
+              </div>
+            </div>
+            <button class="slider-arrow slider-arrow-left" id="sliderPrev" aria-label="Previous slide">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="slider-arrow slider-arrow-right" id="sliderNext" aria-label="Next slide">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="slider-dots" id="sliderDots"></div>
           </div>
         </div>
         <div class="cta">

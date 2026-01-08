@@ -20,14 +20,11 @@ class LandingPageSection extends Model
         'is_active',
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'text_fields' => 'array',
-            'settings' => 'array',
-            'is_active' => 'boolean',
-        ];
-    }
+    protected $casts = [
+        'text_fields' => 'array',
+        'settings' => 'array',
+        'is_active' => 'boolean',
+    ];
 
     public static function getByKey($key)
     {

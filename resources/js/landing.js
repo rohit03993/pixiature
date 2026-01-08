@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
     
     // Observe all sections with animation classes
-    const animatedElements = document.querySelectorAll('.fade-in, .slide-up, .slide-left, .slide-right, .scale-in');
+    const animatedElements = document.querySelectorAll('.fade-in, .slide-up, .slide-left, .slide-right, .scale-in, .student-counter-wrapper');
     animatedElements.forEach(el => {
         observer.observe(el);
     });
@@ -85,5 +85,168 @@ document.addEventListener('DOMContentLoaded', function() {
             el.classList.add('revealed');
         }, index * 150);
     });
+    
+    // Navigation scroll effect - add background after hero section
+    const topNav = document.querySelector('.top-nav');
+    const heroSection = document.querySelector('.hero');
+    
+    if (topNav && heroSection) {
+        const heroHeight = heroSection.offsetHeight;
+        
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            
+            // Add scrolled class when past hero section
+            if (scrolled > heroHeight - 100) {
+                topNav.classList.add('scrolled');
+            } else {
+                topNav.classList.remove('scrolled');
+            }
+        });
+    }
+    
+    // Animated Counter for Student Count
+    const studentCounter = document.getElementById('studentCounter');
+    const counterWrapper = document.querySelector('.student-counter-wrapper');
+    let hasAnimated = false;
+    
+    if (studentCounter && counterWrapper) {
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasAnimated) {
+                    hasAnimated = true;
+                    counterWrapper.classList.add('animate-in');
+                    
+                    // Animate counter from 0 to 1000+
+                    const targetValue = 1000;
+                    const duration = 2000; // 2 seconds
+                    const increment = targetValue / (duration / 16); // 60fps
+                    let currentValue = 0;
+                    
+                    const updateCounter = () => {
+                        currentValue += increment;
+                        if (currentValue < targetValue) {
+                            studentCounter.textContent = Math.floor(currentValue) + '+';
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            studentCounter.textContent = targetValue + '+';
+                        }
+                    };
+                    
+                    // Start animation after a small delay
+                    setTimeout(() => {
+                        updateCounter();
+                    }, 300);
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        counterObserver.observe(counterWrapper);
+    }
+    
+    // Before/After Image Slider with Auto-Slide
+    const slider = document.getElementById('beforeAfterSlider');
+    const prevBtn = document.getElementById('sliderPrev');
+    const nextBtn = document.getElementById('sliderNext');
+    const dotsContainer = document.getElementById('sliderDots');
+    
+    if (slider && prevBtn && nextBtn && dotsContainer) {
+        const slides = slider.querySelectorAll('.slider-slide');
+        let currentSlide = 0;
+        let autoSlideInterval;
+        const autoSlideDelay = 4000; // 4 seconds
+        
+        // Create dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = 'slider-dot' + (index === 0 ? ' active' : '');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+        
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            
+            const dots = dotsContainer.querySelectorAll('.slider-dot');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            
+            currentSlide = index;
+        }
+        
+        function nextSlide() {
+            const next = (currentSlide + 1) % slides.length;
+            showSlide(next);
+        }
+        
+        function prevSlide() {
+            const prev = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(prev);
+        }
+        
+        function goToSlide(index) {
+            showSlide(index);
+            resetAutoSlide();
+        }
+        
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, autoSlideDelay);
+        }
+        
+        function stopAutoSlide() {
+            if (autoSlideInterval) {
+                clearInterval(autoSlideInterval);
+            }
+        }
+        
+        function resetAutoSlide() {
+            stopAutoSlide();
+            startAutoSlide();
+        }
+        
+        // Event listeners
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetAutoSlide();
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetAutoSlide();
+        });
+        
+        // Pause on hover
+        slider.addEventListener('mouseenter', stopAutoSlide);
+        slider.addEventListener('mouseleave', startAutoSlide);
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (slider.getBoundingClientRect().top < window.innerHeight && 
+                slider.getBoundingClientRect().bottom > 0) {
+                if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                    resetAutoSlide();
+                } else if (e.key === 'ArrowRight') {
+                    nextSlide();
+                    resetAutoSlide();
+                }
+            }
+        });
+        
+        // Start auto-slide
+        startAutoSlide();
+        
+        // Pause auto-slide when tab is not visible
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopAutoSlide();
+            } else {
+                startAutoSlide();
+            }
+        });
+    }
 });
 
