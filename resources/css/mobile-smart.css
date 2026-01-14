@@ -1,0 +1,592 @@
+/* Smart Mobile Responsive - Adapts Desktop HTML with CSS Only */
+/* No duplicate HTML needed - DRY principle */
+
+/* Global: Hide mobile-only, show desktop-only by default */
+.mobile-only {
+    display: none !important;
+}
+
+.desktop-only {
+    display: block;
+}
+
+@media (max-width: 984px) {
+    /* Override desktop min-width constraints */
+    html, body {
+        min-width: 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* Force box-sizing on all elements */
+    *, *::before, *::after {
+        box-sizing: border-box !important;
+    }
+    
+    .global_container_,
+    .color-fill-1-holder,
+    .hero {
+        min-width: 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        margin: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    
+    /* Show mobile-only, hide desktop-only on mobile */
+    .mobile-only {
+        display: block !important;
+    }
+    
+    .desktop-only {
+        display: none !important;
+    }
+    
+    /* Hide desktop-only decorative elements on mobile */
+    .hero .parallax-img,
+    .hero .ellipse-1-copy,
+    .hero .layer-1,
+    .hero .layer-1-copy {
+        display: none !important;
+    }
+    
+    /* Hero section - adapt desktop layout to mobile */
+    .hero {
+        padding: 0 !important;
+        background: transparent !important;
+        display: block !important;
+        position: relative !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Add red background to hero content area on mobile */
+    .hero .l-constrained {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 40px 20px !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        background: #ff0000 !important;
+        margin: 0 !important;
+        position: relative !important;
+    }
+    
+    /* Logo - use mobile version and center it at top */
+    .hero .logo-white {
+        width: 240px !important;
+        height: auto !important;
+        margin: 0 auto 40px auto !important;
+        display: block !important;
+        left: auto !important;
+        right: auto !important;
+        position: relative !important;
+        text-align: center !important;
+        order: 1 !important;
+    }
+    
+    /* Ensure logo is centered in its container */
+    .hero .l-constrained {
+        text-align: center !important;
+    }
+    
+    /* Hero text - stack vertically, center align - place after logo */
+    .hero .text,
+    .hero .text-2 {
+        font-size: 1.1rem !important;
+        text-align: center !important;
+        margin: 10px 0 !important;
+        padding: 0 !important;
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        order: 2 !important;
+    }
+    
+    /* Large headline text - move to bottom of section using flexbox order */
+    .hero .learn {
+        font-size: 3.5rem !important;
+        font-weight: bold !important;
+        text-align: center !important;
+        margin: 40px auto 5px auto !important;
+        padding: 0 !important;
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        color: #ffffff !important;
+        line-height: 1.1 !important;
+        transform: none !important;
+        order: 3 !important;
+    }
+    
+    .hero .design {
+        font-size: 3.5rem !important;
+        font-weight: bold !important;
+        text-align: center !important;
+        margin: 0 auto 5px auto !important;
+        padding: 0 !important;
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        color: #ffffff !important;
+        line-height: 1.1 !important;
+        transform: none !important;
+        order: 4 !important;
+    }
+    
+    .hero .grow {
+        font-size: 3.5rem !important;
+        font-weight: bold !important;
+        text-align: center !important;
+        margin: 0 auto 0 auto !important;
+        padding: 0 !important;
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        color: #ffffff !important;
+        line-height: 1.1 !important;
+        transform: none !important;
+        order: 5 !important;
+    }
+    
+    /* Enroll Now Bar - simpler mobile layout */
+    .enroll-now-bar {
+        padding: 30px 0 !important;
+    }
+    
+    .enroll-now-bar .l-constrained-3 {
+        width: 100% !important;
+        padding: 0 20px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    .enroll-now-bar .text-3 {
+        font-size: 1.2rem !important;
+        text-align: center !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .enroll-now-bar .rectangle-2-holder {
+        width: 90% !important;
+        max-width: 471px !important;
+        padding: 15px 20px !important;
+        border-radius: 25px !important;
+    }
+    
+    .enroll-now-bar .text-4 {
+        width: 100% !important;
+        max-width: 287px !important;
+        height: auto !important;
+    }
+    
+    /* Stucked Imagery - show background image only, sticky notes are part of the background image */
+    .stucked-imagery {
+        padding: 20px 0 !important;
+        margin: 0 !important;
+        background-size: contain !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        min-height: 400px !important;
+        width: 100% !important;
+        position: relative !important;
+        display: block !important;
+    }
+    
+    /* Hide individual sticky note images on mobile - they are part of the background image */
+    .stucked-imagery .l-constrained-2,
+    .stucked-imagery .col-3,
+    .stucked-imagery .col-4,
+    .stucked-imagery .col-6,
+    .stucked-imagery .col-7,
+    .stucked-imagery .row-5 {
+        display: none !important;
+    }
+    
+    .stucked-imagery img {
+        display: none !important;
+    }
+    
+    /* Design Sprint - center align with proper scaling and spacing */
+    .design-sprint {
+        padding: 40px 0 30px !important;
+        height: auto !important;
+        min-height: auto !important;
+    }
+    
+    .design-sprint .l-constrained-3 {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 20px !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        margin: 0 auto !important;
+    }
+    
+    .design-sprint .text-14 {
+        font-size: 1.3rem !important;
+        text-align: center !important;
+        margin-bottom: 20px !important;
+    }
+    
+    /* Scale down text images for mobile with good spacing between elements */
+    .design-sprint .text-15,
+    .design-sprint .design-2,
+    .design-sprint .sprint {
+        max-width: 80% !important;
+        width: auto !important;
+        height: auto !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        right: auto !important;
+        left: auto !important;
+        display: block !important;
+        position: relative !important;
+    }
+    
+    /* Specific scaling with nice line gaps between elements */
+    .design-sprint .text-15 {
+        max-width: 150px !important;
+        margin-top: 0 !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .design-sprint .design-2 {
+        max-width: 200px !important;
+        margin-top: 0 !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .design-sprint .sprint {
+        max-width: 180px !important;
+        margin-top: 0 !important;
+    }
+    
+    /* Mastering - stack cards vertically */
+    .mastering {
+        padding: 30px 0 60px !important;
+    }
+    
+    .mastering .l-constrained-5 {
+        width: 100% !important;
+        padding: 0 20px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+    
+    .mastering .text-16 {
+        font-size: 1.8rem !important;
+        text-align: center !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .mastering .rectangle-5-holder,
+    .mastering .rectangle-5-copy-holder,
+    .mastering .rectangle-5-copy-2-holder {
+        width: 100% !important;
+        min-height: 200px !important;
+        height: auto !important;
+        padding: 60px 20px !important;
+        border-radius: 40px !important;
+        font-size: 1.3rem !important;
+        font-weight: 500 !important;
+        text-align: center !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        color: white !important;
+    }
+    
+    /* Hide desktop images, show mobile text */
+    .mastering .desktop-img {
+        display: none !important;
+    }
+    
+    .mastering .mobile-text {
+        display: block !important;
+        color: white !important;
+        font-weight: 500 !important;
+    }
+    
+    .mastering .desktop-text {
+        display: none !important;
+    }
+    
+    /* Video section */
+    .video {
+        padding: 60px 0 !important;
+    }
+    
+    .video .l-constrained-6 {
+        width: 100% !important;
+        padding: 0 20px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    /* Hide desktop counter, show mobile image */
+    .video .student-counter-wrapper {
+        display: none !important;
+    }
+    
+    .video picture {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .video picture img {
+        width: 100% !important;
+        max-width: 912px !important;
+        height: auto !important;
+    }
+    
+    .video .rectangle-6-holder {
+        width: 100% !important;
+        max-width: 90% !important;
+        padding: 20px !important;
+    }
+    
+    .video .text-22 {
+        width: 100% !important;
+        max-width: 300px !important;
+        height: auto !important;
+    }
+    
+    /* Before/After - simpler mobile layout with reduced spacing */
+    .before-after {
+        padding: 40px 0 40px !important;
+    }
+    
+    .before-after .col {
+        display: none !important; /* Hide desktop ellipses */
+    }
+    
+    .before-after .before-after-slider-wrapper {
+        display: none !important; /* Hide desktop slider */
+    }
+    
+    .before-after .l-constrained-6 {
+        width: 100% !important;
+        padding: 0 20px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        margin: 0 auto !important;
+    }
+    
+    .before-after .text-22 {
+        font-size: 1.3rem !important;
+        text-align: center !important;
+        margin-bottom: 20px !important;
+        color: white !important;
+        line-height: 1.4 !important;
+    }
+    
+    .before-after .row {
+        width: 100% !important;
+        max-width: 90% !important;
+        padding: 60px 20px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 20px !important;
+        border: 1px solid #f3704d !important;
+        border-radius: 20px !important;
+        background: #000000 !important;
+        min-height: auto !important;
+        margin: 0 auto !important;
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        transform: none !important;
+    }
+    
+    .before-after .row.group {
+        display: flex !important;
+    }
+    
+    .before-after .triangle-1,
+    .before-after .triangle-1-copy {
+        width: 30px !important;
+        height: auto !important;
+        flex-shrink: 0 !important;
+        position: relative !important;
+        margin: 0 !important;
+        float: none !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        align-self: center !important;
+    }
+    
+    .before-after .text-23 {
+        max-width: 100px !important;
+        width: auto !important;
+        height: auto !important;
+        flex-shrink: 0 !important;
+        position: relative !important;
+        margin: 0 !important;
+        float: none !important;
+        display: block !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        align-self: center !important;
+    }
+    
+    /* CTA section */
+    .cta {
+        padding: 60px 0 !important;
+    }
+    
+    .cta .col-2 {
+        width: 100% !important;
+        padding: 0 20px !important;
+    }
+    
+    .cta .l-constrained-8 {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    .cta .text-25 {
+        width: 100% !important;
+        max-width: 871px !important;
+        height: auto !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .cta picture {
+        display: block !important;
+        width: 100% !important;
+    }
+    
+    .cta picture img {
+        width: 100% !important;
+        max-width: 871px !important;
+        height: auto !important;
+    }
+    
+    .cta .rectangle-2-copy-holder,
+    .cta .rectangle-4-copy-8-holder {
+        width: 100% !important;
+        max-width: 90% !important;
+        padding: 20px !important;
+        border-radius: 25px !important;
+    }
+    
+    .cta .text-26,
+    .cta .text-27 {
+        width: 100% !important;
+        max-width: 639px !important;
+        height: auto !important;
+        margin-top: 30px !important;
+    }
+    
+    /* Make all images responsive */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Ensure all text elements don't overflow */
+    p, span, div, h1, h2, h3, h4, h5, h6 {
+        max-width: 100% !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Prevent horizontal overflow on all containers */
+    * {
+        max-width: 100% !important;
+    }
+    
+    /* Ensure all sections respect viewport */
+    .hero,
+    .enroll-now-bar,
+    .stucked-imagery,
+    .design-sprint,
+    .mastering,
+    .video,
+    .before-after,
+    .cta {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: auto !important;
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* Navigation adjustments */
+    .top-nav {
+        padding: 15px 20px !important;
+    }
+    
+    .top-nav .nav-logo img {
+        height: 35px !important;
+    }
+    
+    .top-nav .nav-links {
+        gap: 8px;
+    }
+    
+    .top-nav .nav-link,
+    .top-nav .btn-login {
+        font-size: 12px !important;
+        padding: 8px 16px !important;
+    }
+}
