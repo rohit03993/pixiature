@@ -7,7 +7,7 @@
     <meta name="keywords" content="design, creative, course, sprint, learn design">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    @vite(['resources/static-import/style.css', 'resources/css/landing.css', 'resources/js/landing.js'])
+    @vite(['resources/static-import/style.css', 'resources/css/landing.css', 'resources/css/mobile-smart.css', 'resources/js/landing.js'])
     <!--[if IE 6]>
 	<style type="text/css">
 		* html .group {
@@ -36,8 +36,16 @@
         background-size: cover !important;
         background-position: center top !important;
         background-repeat: no-repeat !important;
-        min-width: 1920px !important;
+        min-width: 1920px;
         overflow-x: hidden !important;
+      }
+      /* Mobile override - must come after desktop rule */
+      @media (max-width: 984px) {
+        .global_container_ {
+          min-width: 100% !important;
+          width: 100% !important;
+          max-width: 100vw !important;
+        }
       }
       .hero {
         background-image: url('{{ asset('images/ellipse_1.png') }}') !important;
@@ -245,6 +253,102 @@
           transform: translateY(-2px) scale(1.03);
         }
       }
+      
+      /* Mobile Background Images Override */
+      @media (max-width: 984px) {
+        html, body {
+          min-width: 100% !important;
+          width: 100% !important;
+          max-width: 100vw !important;
+          overflow-x: hidden !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+        .global_container_ {
+          background-image: url('{{ asset("static-import/mobile/images/background.jpg") }}') !important;
+          min-width: 100% !important;
+          width: 100% !important;
+          max-width: 100vw !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+        .color-fill-1-holder {
+          min-width: 100% !important;
+          width: 100% !important;
+          max-width: 100vw !important;
+          margin: 0 !important;
+          padding: 76px 0 0 !important;
+        }
+        .hero {
+          min-width: 100% !important;
+          width: 100% !important;
+          max-width: 100vw !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+        .l-constrained,
+        .l-constrained-2,
+        .l-constrained-3,
+        .l-constrained-4,
+        .l-constrained-5,
+        .l-constrained-6,
+        .l-constrained-7,
+        .l-constrained-8 {
+          width: 100% !important;
+          max-width: 100% !important;
+          min-width: auto !important;
+          margin: 0 auto !important;
+          padding-left: 20px !important;
+          padding-right: 20px !important;
+          box-sizing: border-box !important;
+        }
+        /* Center logo on mobile */
+        .hero .logo-white {
+          left: auto !important;
+          right: auto !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          display: block !important;
+        }
+        .hero .l-constrained {
+          text-align: center !important;
+        }
+        /* Ensure Learn. Design. Grow. text is visible and centered on mobile */
+        .hero .learn,
+        .hero .design,
+        .hero .grow {
+          position: relative !important;
+          left: auto !important;
+          right: auto !important;
+          top: auto !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          display: block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          color: #ffffff !important;
+          text-align: center !important;
+          width: 100% !important;
+        }
+        .stucked-imagery {
+          background-image: url('{{ asset("static-import/mobile/images/rectangle_4.jpg") }}') !important;
+        }
+        .design-sprint {
+          background-image: url('{{ asset("static-import/mobile/images/rectangle_4_copy.jpg") }}') !important;
+        }
+        .mastering .rectangle-5-holder.mobile-only {
+          background-image: url('{{ asset("static-import/mobile/images/rectangle_5.png") }}') !important;
+        }
+        .mastering .rectangle-5-copy-6-holder {
+          background-image: url('{{ asset("static-import/mobile/images/rectangle_5.png") }}') !important;
+        }
+        .mastering .rectangle-5-copy-8-holder {
+          background-image: url('{{ asset("static-import/mobile/images/rectangle_5.png") }}') !important;
+        }
+        .cta .col-2 {
+          background-image: url('{{ asset("static-import/mobile/images/rectangle_4_copy_7.jpg") }}') !important;
+        }
+      }
     </style>
     <!-- Top Navigation Bar - Modern Design -->
     <nav class="top-nav">
@@ -260,6 +364,7 @@
       <div class="color-fill-1-holder">
         <div class="hero">
           <div class="l-constrained">
+            <!-- Desktop parallax images - hidden on mobile via CSS -->
             <img class="ellipse-1-copy parallax-img" src="{{ asset('images/ellipse_1_copy.png') }}" alt="" width="1339" height="1053">
             <img class="layer-1 parallax-img" src="{{ asset('images/layer_1.jpg') }}" alt="" width="1383" height="1053">
             <img class="layer-1-copy parallax-img" src="{{ asset('images/layer_1_copy.jpg') }}" alt="" width="959" height="1053">
@@ -269,16 +374,20 @@
                 $taglineLeft = $heroFields['tagline_left'] ?? 'Create Like a Pro';
                 $taglineRight = $heroFields['tagline_right'] ?? 'Design Your Way Forward';
                 $mainHeadline = $heroFields['main_headline'] ?? "Learn.\nDesign.\nGrow.";
-                // Convert literal \n strings to actual newlines, then split
                 $mainHeadline = str_replace('\\n', "\n", $mainHeadline);
                 $headlineParts = array_filter(array_map('trim', explode("\n", $mainHeadline)));
-                $headlineParts = array_values($headlineParts); // Re-index array
+                $headlineParts = array_values($headlineParts);
             @endphp
-            @if($hero && $hero->image_path)
+            <!-- Logo - responsive with picture element -->
+            <picture>
+              <source media="(max-width: 984px)" srcset="{{ $hero && $hero->image_path ? \Illuminate\Support\Facades\Storage::url($hero->image_path) : asset('static-import/mobile/images/logo_white.png') }}">
+              @if($hero && $hero->image_path)
                 <img class="logo-white fade-in" src="{{ \Illuminate\Support\Facades\Storage::url($hero->image_path) }}" alt="Pixature Logo" width="155" height="110">
-            @else
+              @else
                 <img class="logo-white fade-in" src="{{ asset('images/logo_white.png') }}" alt="Pixature Logo" width="155" height="110">
-            @endif
+              @endif
+            </picture>
+            <!-- Headlines - same content, CSS adapts layout -->
             @if(count($headlineParts) >= 3)
                 <p class="learn fade-in">{{ $headlineParts[0] }}</p>
                 <p class="design fade-in">{{ $headlineParts[1] }}</p>
@@ -305,40 +414,86 @@
             @endphp
             <p class="text-3">{{ $enrollText }}</p>
             <a href="{{ route('enroll') }}" class="rectangle-2-holder enroll-button">
-              <img class="text-4" src="{{ asset('images/enroll_now.png') }}" alt="Enroll Now ↗" width="157" height="21" title="Enroll Now ↗">
+              <picture>
+                <source media="(max-width: 984px)" srcset="{{ asset('static-import/mobile/images/enroll_now.png') }}">
+                <img class="text-4" src="{{ asset('images/enroll_now.png') }}" alt="Enroll Now ↗" width="157" height="21" title="Enroll Now ↗">
+              </picture>
             </a>
           </div>
         </div>
         <div class="stucked-imagery">
           <div class="l-constrained-2 group">
             <div class="col-3">
-              <img class="text-5" src="{{ asset('images/lack_in_new_ideas.png') }}" alt="Lack in New Ideas" width="118" height="63" title="Lack in New Ideas">
-              <img class="text-6" src="{{ asset('images/creative_block.png') }}" alt="Creative Block" width="107" height="64" title="Creative Block">
-              <img class="text-7" src="{{ asset('images/boring_routines.png') }}" alt="Boring Routines" width="110" height="62" title="Boring Routines">
+              <picture>
+                <source media="(max-width: 984px)" srcset="{{ asset('static-import/mobile/images/lack_in_new_ideas.png') }}">
+                <img class="text-5" src="{{ asset('images/lack_in_new_ideas.png') }}" alt="Lack in New Ideas" width="118" height="63" title="Lack in New Ideas">
+              </picture>
+              <picture>
+                <source media="(max-width: 984px)" srcset="{{ asset('static-import/mobile/images/creative_block.png') }}">
+                <img class="text-6" src="{{ asset('images/creative_block.png') }}" alt="Creative Block" width="107" height="64" title="Creative Block">
+              </picture>
+              <picture>
+                <source media="(max-width: 984px)" srcset="{{ asset('static-import/mobile/images/boring_routines.png') }}">
+                <img class="text-7" src="{{ asset('images/boring_routines.png') }}" alt="Boring Routines" width="110" height="62" title="Boring Routines">
+              </picture>
             </div>
             <div class="col-4">
               <div class="row-5 group">
                 <div class="col-6">
-                  <img class="text-8 fade-in" src="{{ asset('images/are_you_feeling.png') }}" alt="Are you feeling" width="329" height="59" title="Are you feeling">
-                  <img class="stucked scale-in" src="{{ asset('images/stucked.png') }}" alt="Stucked" width="619" height="162" title="Stucked">
-                  <img class="text-9 fade-in" src="{{ asset('images/in_creative_path.png') }}" alt="in creative path?" width="361" height="63" title="in creative path?">
+                  <picture>
+                    <source media="(max-width: 984px)" srcset="{{ asset('static-import/mobile/images/are_you_feeling.png') }}">
+                    <img class="text-8 fade-in" src="{{ asset('images/are_you_feeling.png') }}" alt="Are you feeling" width="329" height="59" title="Are you feeling">
+                  </picture>
+                  <picture>
+                    <source media="(max-width: 984px)" srcset="{{ asset('static-import/mobile/images/stucked.png') }}">
+                    <img class="stucked scale-in" src="{{ asset('images/stucked.png') }}" alt="Stucked" width="619" height="162" title="Stucked">
+                  </picture>
+                  <picture>
+                    <source media="(max-width: 984px)" srcset="{{ asset('static-import/mobile/images/in_creative_path.png') }}">
+                    <img class="text-9 fade-in" src="{{ asset('images/in_creative_path.png') }}" alt="in creative path?" width="361" height="63" title="in creative path?">
+                  </picture>
                 </div>
                 <div class="col-7">
-                  <img class="text-10" src="{{ asset('images/lost_of_inpsiration.png') }}" alt="Lost of Inpsiration" width="126" height="63" title="Lost of Inpsiration">
-                  <img class="text-11" src="{{ asset('images/fear_of_exploration.png') }}" alt="Fear of Exploration" width="116" height="57" title="Fear of Exploration">
+                  <picture>
+                    <source media="(max-width: 984px)" srcset="{{ asset('static-import/mobile/images/lost_of_inpsiration.png') }}">
+                    <img class="text-10" src="{{ asset('images/lost_of_inpsiration.png') }}" alt="Lost of Inpsiration" width="126" height="63" title="Lost of Inpsiration">
+                  </picture>
+                  <picture>
+                    <source media="(max-width: 984px)" srcset="{{ asset('static-import/mobile/images/fear_of_exploration.png') }}">
+                    <img class="text-11" src="{{ asset('images/fear_of_exploration.png') }}" alt="Fear of Exploration" width="116" height="57" title="Fear of Exploration">
+                  </picture>
                 </div>
               </div>
-              <img class="text-12" src="{{ asset('images/afraid_of_ai_trends.png') }}" alt="Afraid of Ai &amp; Trends" width="116" height="52" title="Afraid of Ai &amp; Trends">
-              <img class="text-13" src="{{ asset('images/cluttered_mindset.png') }}" alt="Cluttered Mindset" width="114" height="69" title="Cluttered Mindset">
+              <picture>
+                <source media="(max-width: 984px)" srcset="{{ asset('static-import/mobile/images/afraid_of_ai_trends.png') }}">
+                <img class="text-12" src="{{ asset('images/afraid_of_ai_trends.png') }}" alt="Afraid of Ai &amp; Trends" width="116" height="52" title="Afraid of Ai &amp; Trends">
+              </picture>
+              <picture>
+                <source media="(max-width: 984px)" srcset="{{ asset('static-import/mobile/images/cluttered_mindset.png') }}">
+                <img class="text-13" src="{{ asset('images/cluttered_mindset.png') }}" alt="Cluttered Mindset" width="114" height="69" title="Cluttered Mindset">
+              </picture>
             </div>
           </div>
         </div>
         <div class="design-sprint">
-          <div class="l-constrained-4">
-            <p class="text-14 fade-in">We've been there. And so we built</p>
-            <img class="text-15 slide-up" src="{{ asset('images/30_days.png') }}" alt="30 Days" width="254" height="79" title="30 Days">
-            <img class="design-2 scale-in" src="{{ asset('images/design_2.png') }}" alt="Design" width="1121" height="406" title="Design">
-            <img class="sprint scale-in" src="{{ asset('images/sprint.png') }}" alt="Sprint" width="689" height="280" title="Sprint">
+          <div class="l-constrained-3">
+            @php
+                $designSprint = $sections['design_sprint_intro'] ?? null;
+                $designSprintText = $designSprint && is_array($designSprint->text_fields) ? ($designSprint->text_fields['heading'] ?? $designSprint->content ?? "We've been there.<br>And so we built") : "We've been there.<br>And so we built";
+            @endphp
+            <p class="text-14">{!! str_replace('\n', '<br>', $designSprintText) !!}</p>
+            <picture>
+              <source media="(max-width: 984px)" srcset="{{ asset('static-import/mobile/images/30_days.png') }}">
+              <img class="text-15" src="{{ asset('images/30_days.png') }}" alt="30 Days" width="254" height="79" title="30 Days">
+            </picture>
+            <picture>
+              <source media="(max-width: 984px)" srcset="{{ asset('static-import/mobile/images/design_2.png') }}">
+              <img class="design-2" src="{{ asset('images/design_2.png') }}" alt="Design" width="1121" height="406" title="Design">
+            </picture>
+            <picture>
+              <source media="(max-width: 984px)" srcset="{{ asset('static-import/mobile/images/sprint.png') }}">
+              <img class="sprint" src="{{ asset('images/sprint.png') }}" alt="Sprint" width="689" height="280" title="Sprint">
+            </picture>
           </div>
         </div>
         <div class="mastering">
@@ -353,15 +508,18 @@
                 <img class="text-17" src="{{ asset('images/enroll_now_2.png') }}" alt="Enroll Now ↗" width="275" height="35" title="Enroll Now ↗">
               </a>
             </div>
+            <!-- Desktop: vertical cards with images | Mobile: horizontal cards with text (CSS adapts) -->
             <div class="rectangle-5-copy-2-holder slide-right">
-              <img class="text-20" src="{{ asset('images/recordings_available.png') }}" alt="Recordings Available" width="47" height="464" title="Recordings Available">
+              <span class="mobile-text">Recordings Available</span>
+              <img class="text-20 desktop-img" src="{{ asset('images/recordings_available.png') }}" alt="Recordings Available" width="47" height="464" title="Recordings Available">
             </div>
             <div class="rectangle-5-copy-holder slide-right">
-              <img class="text-19" src="{{ asset('images/career_freelance_guidance.png') }}" alt="Career / Freelance Guidance" width="96" height="413" title="Career / Freelance Guidance">
+              <span class="mobile-text">Career / Freelance Guidance</span>
+              <img class="text-19 desktop-img" src="{{ asset('images/career_freelance_guidance.png') }}" alt="Career / Freelance Guidance" width="96" height="413" title="Career / Freelance Guidance">
             </div>
             <div class="rectangle-5-holder slide-right">
-              Live Practical
-              <br>Sessions
+              <span class="mobile-text">Live Practical Sessions</span>
+              <span class="desktop-text">Live Practical<br>Sessions</span>
             </div>
           </div>
         </div>
@@ -373,19 +531,27 @@
                 <div class="student-counter-text">Students Got guaranteed growth in their career</div>
               </div>
             </div>
+            <picture>
+              <source media="(max-width: 984px)" srcset="{{ asset('static-import/mobile/images/1000_students_got_gaurant.png') }}">
+              <img class="text-20" src="{{ asset('static-import/mobile/images/1000_students_got_gaurant.png') }}" alt="1000+ Students Got guaranteed growth in their career" width="912" height="206" title="1000+ Students Got guaranteed growth in their career">
+            </picture>
             <div class="rectangle-6-holder scale-in">
-              <img class="text-22" src="{{ asset('images/video_mockup.png') }}" alt="(Video Mockup)" width="358" height="63" title="(Video Mockup)">
+              <picture>
+                <source media="(max-width: 984px)" srcset="{{ asset('static-import/mobile/images/video_mockup.png') }}">
+                <img class="text-22" src="{{ asset('images/video_mockup.png') }}" alt="(Video Mockup)" width="358" height="63" title="(Video Mockup)">
+              </picture>
             </div>
           </div>
         </div>
         <div class="before-after">
-          <div class="col">
+          <div class="col desktop-only">
             <div class="l-constrained-7">
               <img class="ellipse-2-copy scale-in" src="{{ asset('images/ellipse_2_copy.png') }}" alt="" width="606" height="662">
             </div>
           </div>
-          <img class="ellipse-2" src="{{ asset('images/ellipse_2.png') }}" alt="" width="630" height="662">
-          <div class="before-after-slider-wrapper slide-up">
+          <img class="ellipse-2 desktop-only" src="{{ asset('images/ellipse_2.png') }}" alt="" width="630" height="662">
+          <!-- Desktop slider -->
+          <div class="before-after-slider-wrapper slide-up desktop-only">
             @php
                 $beforeAfter = $sections['before_after'] ?? null;
                 $beforeAfterText = $beforeAfter && is_array($beforeAfter->text_fields) ? ($beforeAfter->text_fields['heading'] ?? $beforeAfter->content ?? 'Only 1 month of Sprint get you there') : 'Only 1 month of Sprint get you there';
@@ -426,17 +592,36 @@
             </button>
             <div class="slider-dots" id="sliderDots"></div>
           </div>
+          <!-- Mobile layout -->
+          <div class="l-constrained-6 mobile-only">
+            @php
+                $beforeAfter = $sections['before_after'] ?? null;
+                $beforeAfterText = $beforeAfter && is_array($beforeAfter->text_fields) ? ($beforeAfter->text_fields['heading'] ?? $beforeAfter->content ?? 'Only 1 month of Sprint<br>get you there') : 'Only 1 month of Sprint<br>get you there';
+            @endphp
+            <p class="text-22">{!! str_replace('\n', '<br>', $beforeAfterText) !!}</p>
+            <div class="row group">
+              <img class="triangle-1" src="{{ asset('static-import/mobile/images/triangle_1.png') }}" alt="" width="49" height="57">
+              <img class="text-23" src="{{ asset('static-import/mobile/images/before_after.png') }}" alt="Before / After" width="148" height="857" title="Before / After">
+              <img class="triangle-1-copy" src="{{ asset('static-import/mobile/images/triangle_1_copy.png') }}" alt="" width="49" height="57">
+            </div>
+          </div>
         </div>
         <div class="cta">
           <div class="col-2">
             <div class="l-constrained-8">
-              <img class="text-25 fade-in" src="{{ asset('images/your_design_career_starts.png') }}" alt="Your design career starts here Lets Create Togther" width="1091" height="210" title="Your design career starts here Lets Create Togther">
+              <picture>
+                <source media="(max-width: 984px)" srcset="{{ asset('static-import/mobile/images/your_design_career_starts.png') }}">
+                <img class="text-25 fade-in" src="{{ asset('images/your_design_career_starts.png') }}" alt="Your design career starts here Lets Create Togther" width="1091" height="210" title="Your design career starts here Lets Create Togther">
+              </picture>
               <div class="rectangle-4-copy-8-holder cta-button">
                 Book your seat now
               </div>
             </div>
           </div>
-          <img class="text-27 fade-in" src="{{ asset('images/social_links_and_rest_all.png') }}" alt="Social Links and rest all details" width="1283" height="87" title="Social Links and rest all details">
+          <picture>
+            <source media="(max-width: 984px)" srcset="{{ asset('static-import/mobile/images/social_links_and_rest_all.png') }}">
+            <img class="text-27 fade-in" src="{{ asset('images/social_links_and_rest_all.png') }}" alt="Social Links and rest all details" width="1283" height="87" title="Social Links and rest all details">
+          </picture>
         </div>
       </div>
     </div>
